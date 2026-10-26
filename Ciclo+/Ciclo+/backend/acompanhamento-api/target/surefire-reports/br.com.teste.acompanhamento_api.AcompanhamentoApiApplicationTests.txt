@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.teste.acompanhamento_api.AcompanhamentoApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.05 s -- in br.com.teste.acompanhamento_api.AcompanhamentoApiApplicationTests

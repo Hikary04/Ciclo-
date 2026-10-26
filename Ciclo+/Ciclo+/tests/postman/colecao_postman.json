@@ -1,0 +1,738 @@
+{
+  "info": {
+    "_postman_id": "041be8b4-fe5f-4947-b300-c99bd588cda4",
+    "name": "Teste de API - Acompanhamento Menstrual",
+    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58815341",
+    "_collection_link": "https://go.postman.co/collection/58815341-041be8b4-fe5f-4947-b300-c99bd588cda4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "01 — Usuários",
+      "item": [
+        {
+          "name": "CT-API-05 - Consultar usuário excluído",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Usuário excluído não deve ser encontrado\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-06 - Consultar usuário cadastrado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Usuário deve ser encontrado\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O nome deve ser Ana Teste\", function () {\r\n    const usuario = pm.response.json();\r\n\r\n    pm.expect(usuario.nome).to.eql(\"Ana Teste\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-07 - Cadastrar usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Usuário cadastrado com sucesso\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"O nome deve ser Carlos Teste\", function () {\r\n    const usuario = pm.response.json();\r\n\r\n    pm.expect(usuario.nome).to.eql(\"Carlos Teste\");\r\n});\r\n\r\npm.test(\"O ID deve ser 3\", function () {\r\n    const usuario = pm.response.json();\r\n\r\n    pm.expect(usuario.idUsuario).to.eql(3);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n  \"idUsuario\": 3,\r\n  \"nome\": \"Carlos Teste\",\r\n  \"dataNascimento\": \"2002-03-20\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-08 - Atualizar usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Usuário atualizado com sucesso\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O nome deve ser Vanessa Atualizado\", function () {\r\n    const usuario = pm.response.json();\r\n\r\n    pm.expect(usuario.nome).to.eql(\"Vanessa Atualizado\");\r\n});\r\n\r\npm.test(\"O ID deve continuar sendo 3\", function () {\r\n    const usuario = pm.response.json();\r\n\r\n    pm.expect(usuario.idUsuario).to.eql(3);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n  \"nome\": \"Vanessa Atualizado\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-09 - Excluir usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Usuário excluído com sucesso\", function () {\r\n    pm.response.to.have.status(204);\r\n});\r\n\r\npm.test(\"A resposta deve estar vazia\", function () {\r\n    pm.expect(pm.response.text()).to.be.empty;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 — Ciclos Menstruais",
+      "item": [
+        {
+          "name": "CT-API-15 - Cadastrar ciclo menstrual",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ciclo cadastrado com sucesso\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"O ID do ciclo deve ser 1\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.idCiclo).to.eql(1);\r\n});\r\n\r\npm.test(\"O ciclo deve pertencer ao usuário 1\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.idUsuario).to.eql(1);\r\n});\r\n\r\npm.test(\"As datas devem estar corretas\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.dataInicio).to.eql(\"2026-09-01\");\r\n    pm.expect(ciclo.dataFinal).to.eql(\"2026-09-06\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idCiclo\": 1,\r\n  \"idUsuario\": 1,\r\n  \"dataInicio\": \"2026-09-01\",\r\n  \"dataFinal\": \"2026-09-06\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ciclos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-10 - Consultar ciclo menstrual",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"A consulta dos ciclos deve retornar 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O ciclo menstrual deve estar cadastrado corretamente\", function () {\r\n    const ciclos = pm.response.json();\r\n\r\n    const ciclo = ciclos.find(function (c) {\r\n        return c.idCiclo === 1;\r\n    });\r\n\r\n    pm.expect(ciclo).to.exist;\r\n    pm.expect(ciclo.idUsuario).to.eql(1);\r\n    pm.expect(ciclo.dataInicio).to.eql(\"2026-09-01\");\r\n    pm.expect(ciclo.dataFinal).to.eql(\"2026-09-06\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/ciclos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-11 - Impedir cadastro de ciclo inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sistema deve rejeitar datas inválidas\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Deve informar que os dados são inválidos\", function () {\r\n    const resposta = pm.response.text();\r\n\r\n    pm.expect(resposta).to.include(\"Dados do ciclo inválidos\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n  \"idCiclo\": 2,\r\n  \"idUsuario\": 1,\r\n  \"dataInicio\": \"2026-10-10\",\r\n  \"dataFinal\": \"2026-10-05\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ciclos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-12 - Verificar ciclo inválido não cadastrado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"A consulta deve retornar 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O ciclo inválido não deve estar cadastrado\", function () {\r\n    const ciclos = pm.response.json();\r\n\r\n    const cicloInvalido = ciclos.find(function (c) {\r\n        return c.idCiclo === 2;\r\n    });\r\n\r\n    pm.expect(cicloInvalido).to.be.undefined;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/ciclos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-12+1- Atualizar ciclo menstrual",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O ciclo deve ser atualizado com sucesso\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"A data final deve ser 08/09/2026\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.dataFinal).to.eql(\"2026-09-08\");\r\n});\r\n\r\npm.test(\"A data inicial deve permanecer igual\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.dataInicio).to.eql(\"2026-09-01\");\r\n});\r\n\r\npm.test(\"O ID do ciclo deve continuar sendo 1\", function () {\r\n    const ciclo = pm.response.json();\r\n\r\n    pm.expect(ciclo.idCiclo).to.eql(1);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"dataInicio\": \"2026-09-01\",\r\n  \"dataFinal\": \"2026-09-08\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/ciclos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-14 - Excluir ciclo menstrual",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O ciclo deve ser excluído com sucesso\", function () {\r\n    pm.response.to.have.status(204);\r\n});\r\n\r\npm.test(\"A resposta deve estar vazia\", function () {\r\n    pm.expect(pm.response.text()).to.be.empty;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/ciclos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "ciclos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03 — Sintomas",
+      "item": [
+        {
+          "name": "CT-API-21 - Cadastrar sintoma",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Sintoma cadastrado com sucesso\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"O ID do sintoma deve ser 1\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.idSintomas).to.eql(1);\r\n});\r\n\r\npm.test(\"A descricao e a intensidade devem estar corretas\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.descricao).to.eql(\"Colica menstrual\");\r\n    pm.expect(sintoma.intensidade).to.eql(3);\r\n});\r\n\r\npm.test(\"O sintoma deve pertencer ao ciclo 1\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.idCiclo).to.eql(1);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idSintomas\": 1,\r\n  \"descricao\": \"Colica menstrual\",\r\n  \"intensidade\": 3,\r\n  \"idCiclo\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sintomas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-22 - Impedir cadastro duplicado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sistema deve impedir ID duplicado\", function () {\r\n    pm.response.to.have.status(409);\r\n});\r\n\r\npm.test(\"Deve informar que o sintoma ja existe\", function () {\r\n    const resposta = pm.response.text();\r\n\r\n    pm.expect(resposta).to.include(\"Sintoma já cadastrado\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n  \"idSintomas\": 1,\r\n  \"descricao\": \"Colica menstrual\",\r\n  \"intensidade\": 3,\r\n  \"idCiclo\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sintomas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-16 - Consultar sintoma cadastrado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"A consulta dos sintomas deve retornar 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O sintoma deve estar cadastrado corretamente\", function () {\r\n    const sintomas = pm.response.json();\r\n\r\n    const sintoma = sintomas.find(function (s) {\r\n        return s.idSintomas === 1;\r\n    });\r\n\r\n    pm.expect(sintoma).to.exist;\r\n    pm.expect(sintoma.descricao).to.eql(\"Colica menstrual\");\r\n    pm.expect(sintoma.intensidade).to.eql(3);\r\n    pm.expect(sintoma.idCiclo).to.eql(1);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/sintomas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-17 - Impedir cadastro de sintoma inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sistema deve rejeitar sintomas sem descricao\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Deve informar que os dados sao invalidos\", function () {\r\n    const resposta = pm.response.text();\r\n\r\n    pm.expect(resposta).to.include(\"Dados do sintoma inválidos\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idSintomas\": 2,\r\n  \"descricao\": \"\",\r\n  \"intensidade\": 3,\r\n  \"idCiclo\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sintomas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-18 - Verificar sintoma inválido não cadastrado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"A consulta deve retornar 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"O sintoma invalido nao deve estar cadastrado\", function () {\r\n    const sintomas = pm.response.json();\r\n\r\n    const sintomaInvalido = sintomas.find(function (s) {\r\n        return s.idSintomas === 2;\r\n    });\r\n\r\n    pm.expect(sintomaInvalido).to.be.undefined;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/sintomas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-19 - Atualizar sintoma",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sintoma deve ser atualizado com sucesso\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"A descricao deve ser atualizada\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.descricao).to.eql(\"Colica menstrual intensa\");\r\n});\r\n\r\npm.test(\"A intensidade deve ser 5\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.intensidade).to.eql(5);\r\n});\r\n\r\npm.test(\"O ID do sintoma deve continuar sendo 1\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.idSintomas).to.eql(1);\r\n});\r\n\r\npm.test(\"O ID do ciclo deve continuar sendo 1\", function () {\r\n    const sintoma = pm.response.json();\r\n\r\n    pm.expect(sintoma.idCiclo).to.eql(1);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"descricao\": \"Colica menstrual intensa\",\r\n  \"intensidade\": 5,\r\n  \"idCiclo\": 1\r\n}\r\n  ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sintomas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-20 — Excluir sintoma",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"O sintoma deve ser excluído com sucesso\", function () {\r\n    pm.response.to.have.status(204);\r\n});\r\n\r\npm.test(\"A resposta deve estar vazia\", function () {\r\n    pm.expect(pm.response.text()).to.be.empty;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/sintomas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-23 - Atualizar sintoma inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sistema deve retornar 404 para sintoma inexistente\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n\r\npm.test(\"A resposta deve estar vazia\", function () {\r\n    pm.expect(pm.response.text()).to.be.empty;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n  \"descricao\": \"Teste de sintoma inexistente\",\r\n  \"intensidade\": 3,\r\n  \"idCiclo\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sintomas/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-API-24 - Excluir sintoma inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"O sistema deve retornar 404 ao excluir sintoma inexistente\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n\r\npm.test(\"A resposta deve estar vazia\", function () {\r\n    pm.expect(pm.response.text()).to.be.empty;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/sintomas/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sintomas",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

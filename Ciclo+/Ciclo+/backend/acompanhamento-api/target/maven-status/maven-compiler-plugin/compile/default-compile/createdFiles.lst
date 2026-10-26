@@ -1,0 +1,11 @@
+br\com\teste\acompanhamento_api\Usuario.class
+br\com\teste\acompanhamento_api\UsuarioController.class
+br\com\teste\acompanhamento_api\CicloService.class
+br\com\teste\acompanhamento_api\SintomasController.class
+br\com\teste\acompanhamento_api\Sintomas.class
+br\com\teste\acompanhamento_api\Ciclo.class
+br\com\teste\acompanhamento_api\CorsConfig.class
+br\com\teste\acompanhamento_api\CicloController.class
+br\com\teste\acompanhamento_api\UsuarioService.class
+br\com\teste\acompanhamento_api\AcompanhamentoApiApplication.class
+br\com\teste\acompanhamento_api\SintomasService.class

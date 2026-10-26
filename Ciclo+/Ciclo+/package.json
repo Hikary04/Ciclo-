@@ -1,0 +1,9 @@
+{
+  "name": "ciclo-certo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de Acompanhamento Menstrual – front-end estático e testes",
+  "scripts": {
+    "test": "node --test frontend/tests/calc.test.js"
+  }
+}

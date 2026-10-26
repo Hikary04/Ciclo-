@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciclo Certo – Acompanhamento Menstrual</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">Ciclo<span>Certo</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <nav>
+      <ul id="menu">
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#calculadora">Calculadora</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#cadastro">Criar conta</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div>
+        <h1>Conheça o seu corpo, <em>um ciclo de cada vez</em></h1>
+        <p>Registre sua menstruação, sintomas e humor em segundos. O Ciclo Certo prevê suas próximas fases e te ajuda a entender melhor a sua saúde.</p>
+        <div class="hero-actions">
+          <a href="#calculadora" class="btn">Testar calculadora</a>
+          <a href="#recursos" class="btn btn-outline">Ver recursos</a>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="phone-title">Seu ciclo hoje</div>
+        <div class="cycle-ring">
+          <div class="cycle-center">
+            <strong id="dayDemo">14</strong>
+            <small>dia do ciclo</small>
+          </div>
+        </div>
+        <div class="phone-item"><span>Próxima menstruação</span><strong>em 14 dias</strong></div>
+        <div class="phone-item"><span>Janela fértil</span><strong>Hoje</strong></div>
+        <div class="phone-item"><span>Humor</span><strong>😊 Bem</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos">
+    <div class="container">
+      <h2 class="section-title">Tudo em um só lugar</h2>
+      <p class="section-sub">Ferramentas simples para acompanhar cada detalhe do seu ciclo.</p>
+      <div class="grid">
+        <div class="card"><div class="icon">📅</div><h3>Calendário inteligente</h3><p>Visualize menstruação, período fértil e ovulação com cores fáceis de entender.</p></div>
+        <div class="card"><div class="icon">🔮</div><h3>Previsões precisas</h3><p>O app aprende com seus ciclos anteriores para estimar as próximas datas.</p></div>
+        <div class="card"><div class="icon">📝</div><h3>Registro de sintomas</h3><p>Anote cólicas, dor de cabeça, humor, energia e fluxo com poucos toques.</p></div>
+        <div class="card"><div class="icon">🔔</div><h3>Lembretes</h3><p>Receba avisos antes da menstruação e para tomar sua pílula ou medicação.</p></div>
+        <div class="card"><div class="icon">🔒</div><h3>Privacidade</h3><p>Seus dados ficam criptografados e protegidos por senha ou biometria.</p></div>
+        <div class="card"><div class="icon">📊</div><h3>Relatórios</h3><p>Gráficos mensais e históricos para levar ao seu médico na consulta.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" class="calc-section">
+    <div class="container">
+      <h2 class="section-title">Calculadora do ciclo</h2>
+      <p class="section-sub">Informe a data da última menstruação e a duração média do seu ciclo.</p>
+      <form class="calc" id="calcForm" novalidate>
+        <div class="field">
+          <label for="lastPeriod">Primeiro dia da última menstruação</label>
+          <input type="date" id="lastPeriod" required>
+        </div>
+        <div class="field">
+          <label for="cycleLength">Duração média do ciclo (dias)</label>
+          <input type="number" id="cycleLength" min="21" max="45" value="28" required>
+          <small>Normalmente entre 21 e 35 dias.</small>
+        </div>
+        <div class="field">
+          <label for="periodLength">Duração da menstruação (dias)</label>
+          <input type="number" id="periodLength" min="1" max="10" value="5" required>
+        </div>
+        <div class="error" id="error"></div>
+        <button type="submit" class="btn full-width">Calcular</button>
+      </form>
+      <div class="results" id="results">
+        <div class="result"><strong id="nextPeriod">-</strong><span id="nextPeriodSub">Próxima menstruação</span></div>
+        <div class="result ovulation"><strong id="ovulation">-</strong><span>Ovulação estimada</span></div>
+        <div class="result fertile"><strong id="fertile">-</strong><span>Janela fértil</span></div>
+        <div class="result"><strong id="currentDay">-</strong><span>Dia atual do ciclo</span></div>
+      </div>
+      <p class="disclaimer">⚠️ Estimativas informativas. Não substituem orientação médica nem servem como método contraceptivo.</p>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="container">
+      <h2 class="section-title">Como funciona</h2>
+      <p class="section-sub">Três passos para começar a se conhecer melhor.</p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Crie sua conta</h3><p>Cadastro rápido e gratuito, sem complicação.</p></div>
+        <div class="step"><div class="num">2</div><h3>Registre seu ciclo</h3><p>Marque os dias de menstruação e os sintomas do dia.</p></div>
+        <div class="step"><div class="num">3</div><h3>Acompanhe insights</h3><p>Veja padrões, previsões e receba lembretes personalizados.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cadastro" class="calc-section">
+    <div class="container">
+      <h2 class="section-title">Crie sua conta</h2>
+      <p class="section-sub">Cadastro rápido e gratuito, leva menos de um minuto.</p>
+      <form class="calc" id="signupForm" novalidate>
+        <div class="field"><label for="signupName">Nome</label><input type="text" id="signupName" autocomplete="name" required></div>
+        <div class="field"><label for="signupEmail">E-mail</label><input type="email" id="signupEmail" autocomplete="email" required></div>
+        <div class="field"><label for="signupBirth">Data de nascimento</label><input type="date" id="signupBirth" autocomplete="bday" required></div>
+        <div class="field"><label for="signupPass">Senha</label><input type="password" id="signupPass" autocomplete="new-password" required><small>Mínimo de 8 caracteres.</small></div>
+        <div class="field"><label for="signupPass2">Confirmar senha</label><input type="password" id="signupPass2" autocomplete="new-password" required></div>
+        <label class="checkbox"><input type="checkbox" id="signupTerms"><span>Li e aceito os termos de uso e a política de privacidade.</span></label>
+        <div class="error" id="signupError"></div>
+        <button type="submit" class="btn full-width">Criar conta</button>
+        <p class="success" id="signupSuccess" hidden>Conta criada com sucesso! Bem-vinda ao Ciclo Certo 💖</p>
+      </form>
+      <p class="disclaimer">🔒 Projeto acadêmico: o cadastro é enviado para a API local (localhost:8080) e fica apenas em memória. A senha não é enviada. Não use dados reais.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <p class="section-sub">Tire suas dúvidas sobre o app.</p>
+      <div class="faq">
+        <details><summary>O app é gratuito?</summary><p>Sim, as funções básicas são gratuitas. Há um plano premium com relatórios avançados e temas exclusivos.</p></details>
+        <details><summary>Meus dados são seguros?</summary><p>Esta versão é um projeto acadêmico: o cadastro vai para uma API rodando no seu próprio computador e some quando ela é desligada. Mesmo assim, não insira informações pessoais reais.</p></details>
+        <details><summary>O app funciona para ciclos irregulares?</summary><p>Funciona, mas as previsões ficam menos confiáveis quando os ciclos são irregulares.</p></details>
+        <details><summary>Posso usar como método contraceptivo?</summary><p>Não. O aplicativo é informativo e não deve ser usado como método contraceptivo. Consulte um profissional de saúde.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta">
+        <h2>Comece hoje a cuidar do seu ciclo</h2>
+        <p>Acompanhe seu ciclo com o Ciclo Certo e tenha informações organizadas em um só lugar.</p>
+        <a href="#cadastro" class="btn">Criar minha conta</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">Ciclo<span class="footer-logo-accent">Certo</span></div>
+    <p>© 2026 Ciclo Certo. Todos os direitos reservados.</p>
+    <p>Este site não substitui consulta médica.</p>
+  </div>
+</footer>
+</body>
+</html>

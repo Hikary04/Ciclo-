@@ -1,0 +1,5 @@
+br\com\teste\acompanhamento_api\CicloServiceTest.class
+br\com\teste\acompanhamento_api\UsuarioServiceTest.class
+br\com\teste\acompanhamento_api\AcompanhamentoApiApplicationTests.class
+br\com\teste\acompanhamento_api\ApiIntegrationTest.class
+br\com\teste\acompanhamento_api\SintomasServiceTest.class
